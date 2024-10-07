@@ -1,13 +1,13 @@
+"use client";
+
+import { UseGetWorkspace } from "@/features/workspaces/api/use-get-workspace";
+import UseWorkspaceId from "@/hooks/use-workspace-id";
 import React from "react";
 
-interface WorkspacePageProps {
-  params: {
-    workspaceId: string;
-  };
-}
+const WorkspacePage = () => {
+  const workspaceId = UseWorkspaceId();
 
-const WorkspacePage = ({ params: { workspaceId } }: WorkspacePageProps) => {
-  return <div>Workspace Id: {workspaceId}</div>;
+  return <div>Workspace Page</div>;
 };
 
 export default WorkspacePage;
