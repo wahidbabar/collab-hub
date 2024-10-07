@@ -1,8 +1,9 @@
 import { api } from "@/convex_generated/api";
 import { useQuery } from "convex/react";
 
-export const useCurrentUser = () => {
-  const data = useQuery(api.users.current);
+export const UseGetWorkspaces = () => {
+  const data = useQuery(api.workspaces.get);
   const isLoading = data === undefined;
+
   return { data, isLoading };
 };
