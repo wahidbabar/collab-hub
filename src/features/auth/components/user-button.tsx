@@ -32,7 +32,7 @@ const UserButton = () => {
 
   const handleSignOut = () => {
     signOut().then(() => {
-      router.push("/");
+      router.replace("/auth");
     });
   };
 
