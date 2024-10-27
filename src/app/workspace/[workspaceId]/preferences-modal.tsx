@@ -54,7 +54,7 @@ export const PreferencesModal = ({
           toast.success("workspace updated");
         },
         onError() {
-          toast.success("Failed to update workspace");
+          toast.error("Failed to update workspace");
         },
       }
     );
@@ -62,9 +62,6 @@ export const PreferencesModal = ({
 
   const handleDeleteWorkspace = async () => {
     const ok = await confirmDelete();
-
-    console.log("ok", ok);
-    console.log("confirm", confirm);
 
     if (!ok) return;
 
@@ -78,7 +75,7 @@ export const PreferencesModal = ({
           toast.success("workspace deleted");
         },
         onError() {
-          toast.success("Failed to delete workspace");
+          toast.error("Failed to delete workspace");
         },
       }
     );
@@ -132,7 +129,7 @@ export const PreferencesModal = ({
               </DialogContent>
             </Dialog>
             <button
-              disabled={false}
+              disabled={removingWorkspace}
               onClick={handleDeleteWorkspace}
               className="flex items-center gap-x-2 px-5 py-4 bg-white rounded-lg border cursor-pointer hover:bg-gray-50 text-rose-600"
             >
