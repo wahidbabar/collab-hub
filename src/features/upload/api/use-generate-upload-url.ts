@@ -1,17 +1,8 @@
 import { api } from "@/convex_generated/api";
-import { Id } from "@/convex_generated/dataModel";
 import { useMutation } from "convex/react";
 import { useCallback, useMemo, useState } from "react";
 
-type RequestType = {
-  body: string;
-  workspaceId: Id<"workspaces">;
-  channelId?: Id<"channels">;
-  parentMessageId?: Id<"messages">;
-  image?: Id<"_storage">;
-  conversationId?: Id<"conversations">;
-};
-type ResponseType = Id<"messages"> | null;
+type ResponseType = string | null;
 
 type Options = {
   onSuccess?: (data: ResponseType) => void;
@@ -20,7 +11,7 @@ type Options = {
   throwError?: boolean;
 };
 
-export const UseCreateMessage = () => {
+export const UseGenerateUploadUrl = () => {
   const [data, setData] = useState<ResponseType>(null);
   const [error, setError] = useState<Error | null>(null);
   const [status, setStatus] = useState<
@@ -32,15 +23,15 @@ export const UseCreateMessage = () => {
   const isSuccess = useMemo(() => status === "success", [status]);
   const isError = useMemo(() => status === "error", [status]);
 
-  const mutation = useMutation(api.messages.create);
+  const mutation = useMutation(api.upload.generateUploadUrl);
 
   const mutate = useCallback(
-    async (values: RequestType, options?: Options) => {
+    async (_values?: {}, options?: Options) => {
       try {
         setData(null);
         setError(null);
         setStatus("pending");
-        const response = await mutation(values);
+        const response = await mutation();
         options?.onSuccess?.(response);
         return response;
       } catch (error) {
