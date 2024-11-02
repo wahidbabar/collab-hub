@@ -27,6 +27,12 @@ const WorkspacePage = () => {
   const channelId = useMemo(() => channels?.[0]?._id, [channels]);
   const isAdmin = useMemo(() => member?.role === "admin", [member?.role]);
 
+  console.log("workspaceLoading", workspaceLoading);
+  console.log("channelsLoading", channelsLoading);
+  console.log("memberLoading", memberLoading);
+  console.log("!member", !member);
+  console.log("!workspace", !workspace);
+
   useEffect(() => {
     if (
       workspaceLoading ||
