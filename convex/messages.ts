@@ -108,9 +108,9 @@ export const get = query({
 
     return {
       ...results,
-      page: await Promise.all(
-        results.page
-          .map(async (message) => {
+      page: (
+        await Promise.all(
+          results.page.map(async (message) => {
             const member = await populateMember(ctx, message.memberId);
             const user = member ? await populateUser(ctx, member.userId) : null;
             if (!member || !user) {
@@ -162,17 +162,14 @@ export const get = query({
               image,
               member,
               user,
-              reactionsWithoutMemberIdProperty,
+              reactions: reactionsWithoutMemberIdProperty,
               threadCount: thread.count,
               threadImage: thread.image,
               threadTimestamp: thread.timeStamp,
             };
           })
-          .filter(
-            (message): message is NonNullable<typeof message> =>
-              message !== null
-          )
-      ),
+        )
+      ).filter((message) => message !== null),
     };
   },
 });
