@@ -11,6 +11,8 @@ import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { UseDeleteMessage } from "@/features/messages/api/use-delete-message";
 import UseConfirm from "@/hooks/use-confirm";
+import { UseToggleReaction } from "@/features/reactions/api/use-toggle-reaction";
+import Reactions from "./reactions";
 
 const Renderer = dynamic(() => import("@/components/renderer"), { ssr: false });
 const Editor = dynamic(() => import("@/components/editor"), { ssr: false });
@@ -68,9 +70,10 @@ const Message = ({
     "Are you sure you want to delete this message? This cannot be undone."
   );
 
+  const { mutate: toggleReaction, isPending: togglingReaction } =
+    UseToggleReaction();
   const { mutate: updateMessage, isPending: updatingMessage } =
     UseUpdateMessage();
-
   const { mutate: deleteMessage, isPending: deletingMessage } =
     UseDeleteMessage();
 
@@ -106,6 +109,17 @@ const Message = ({
         },
         onError() {
           toast.error("Failed to delete message");
+        },
+      }
+    );
+  };
+
+  const handleToggleReaction = (value: string) => {
+    toggleReaction(
+      { messageId: id, value },
+      {
+        onError() {
+          toast.error("Failed to set reaction");
         },
       }
     );
@@ -148,6 +162,10 @@ const Message = ({
                     {"(edited)"}
                   </span>
                 ) : null}
+                <Reactions
+                  reactions={reactions}
+                  onChange={handleToggleReaction}
+                />
               </div>
             )}
           </div>
@@ -158,7 +176,7 @@ const Message = ({
               handleEdit={() => setEditingId(id)}
               handleThread={() => {}}
               handleDelete={handleDeleteMessage}
-              handleReaction={() => {}}
+              handleReaction={handleToggleReaction}
               hideThreadButton={hideThreadButton}
             />
           )}
@@ -220,6 +238,10 @@ const Message = ({
                   {"(edited)"}
                 </span>
               ) : null}
+              <Reactions
+                reactions={reactions}
+                onChange={handleToggleReaction}
+              />
             </div>
           )}
         </div>
@@ -230,7 +252,7 @@ const Message = ({
             handleEdit={() => setEditingId(id)}
             handleThread={() => {}}
             handleDelete={handleDeleteMessage}
-            handleReaction={() => {}}
+            handleReaction={handleToggleReaction}
             hideThreadButton={hideThreadButton}
           />
         )}
