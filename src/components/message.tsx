@@ -13,6 +13,7 @@ import { UseDeleteMessage } from "@/features/messages/api/use-delete-message";
 import UseConfirm from "@/hooks/use-confirm";
 import { UseToggleReaction } from "@/features/reactions/api/use-toggle-reaction";
 import Reactions from "./reactions";
+import { usePanel } from "@/hooks/use-panel";
 
 const Renderer = dynamic(() => import("@/components/renderer"), { ssr: false });
 const Editor = dynamic(() => import("@/components/editor"), { ssr: false });
@@ -65,13 +66,14 @@ const Message = ({
   threadTimestamp,
   hideThreadButton,
 }: MessageProps) => {
+  const { parentMessageId, onOpenMessage, onClose } = usePanel();
+
   const [ConfirmDialog, confirm] = UseConfirm(
     "Delete message",
     "Are you sure you want to delete this message? This cannot be undone."
   );
 
-  const { mutate: toggleReaction, isPending: togglingReaction } =
-    UseToggleReaction();
+  const { mutate: toggleReaction } = UseToggleReaction();
   const { mutate: updateMessage, isPending: updatingMessage } =
     UseUpdateMessage();
   const { mutate: deleteMessage, isPending: deletingMessage } =
@@ -105,7 +107,9 @@ const Message = ({
         onSuccess() {
           toast.success("Message deleted");
 
-          // TODO: Close thread if opened
+          if (parentMessageId === id) {
+            onClose();
+          }
         },
         onError() {
           toast.error("Failed to delete message");
@@ -174,7 +178,7 @@ const Message = ({
               isAuthor={isAuthor}
               isPending={false}
               handleEdit={() => setEditingId(id)}
-              handleThread={() => {}}
+              handleThread={() => onOpenMessage(id)}
               handleDelete={handleDeleteMessage}
               handleReaction={handleToggleReaction}
               hideThreadButton={hideThreadButton}
@@ -250,7 +254,7 @@ const Message = ({
             isAuthor={isAuthor}
             isPending={isPending}
             handleEdit={() => setEditingId(id)}
-            handleThread={() => {}}
+            handleThread={() => onOpenMessage(id)}
             handleDelete={handleDeleteMessage}
             handleReaction={handleToggleReaction}
             hideThreadButton={hideThreadButton}
