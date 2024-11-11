@@ -8,7 +8,7 @@ import UseWorkspaceId from "@/hooks/use-workspace-id";
 import { UseCurrentMember } from "@/features/members/api/use-current-member";
 import { Loader } from "lucide-react";
 
-const formatDateLabel = (dateStr: string) => {
+export const formatDateLabel = (dateStr: string) => {
   const date = new Date(dateStr);
   if (isToday(date)) return "Today";
   if (isYesterday(date)) return "Yesterday";
