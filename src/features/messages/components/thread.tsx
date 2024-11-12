@@ -132,7 +132,7 @@ const Thread = ({ messageId, onClose }: ThreadProps) => {
             <XIcon className="size-5 store-[1.5] " />
           </Button>
         </div>
-        <div className="flex h-full items-center justify-center">
+        <div className="flex my-auto items-center justify-center">
           <Loader className="size-5 animate-spin text-muted-foreground" />
         </div>
         ;
@@ -149,7 +149,7 @@ const Thread = ({ messageId, onClose }: ThreadProps) => {
             <XIcon className="size-5 store-[1.5] " />
           </Button>
         </div>
-        <div className="flex flex-col gap-y-2 h-full items-center justify-center">
+        <div className="flex flex-col gap-y-2 my-auto items-center justify-center">
           <AlertTriangle className="size-5 text-muted-foreground" />
           <p className="text-sm text-muted-foreground">Message not found</p>
         </div>
@@ -247,9 +247,6 @@ const Thread = ({ messageId, onClose }: ThreadProps) => {
           image={message.image}
           updatedAt={message.updatedAt}
           createdAt={message._creationTime}
-          // threadCount={message.threadCount}
-          // threadImage={message.threadImage}
-          // threadTimestamp={message.threadTimestamp}
           isEditing={editingId === message._id}
           setEditingId={setEditingId}
           hideThreadButton
