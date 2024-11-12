@@ -4,14 +4,10 @@ import { useMutation } from "convex/react";
 import { useCallback, useMemo, useState } from "react";
 
 type RequestType = {
-  body: string;
   workspaceId: Id<"workspaces">;
-  channelId?: Id<"channels">;
-  parentMessageId?: Id<"messages">;
-  image?: Id<"_storage">;
-  conversationId?: Id<"conversations">;
+  memberId: Id<"members">;
 };
-type ResponseType = Id<"messages"> | null;
+type ResponseType = Id<"conversations"> | null;
 
 type Options = {
   onSuccess?: (data: ResponseType) => void;
@@ -20,7 +16,7 @@ type Options = {
   throwError?: boolean;
 };
 
-export const UseCreateMessage = () => {
+export const UseCreateOrGetConversations = () => {
   const [data, setData] = useState<ResponseType>(null);
   const [error, setError] = useState<Error | null>(null);
   const [status, setStatus] = useState<
@@ -32,7 +28,7 @@ export const UseCreateMessage = () => {
   const isSuccess = useMemo(() => status === "success", [status]);
   const isError = useMemo(() => status === "error", [status]);
 
-  const mutation = useMutation(api.messages.create);
+  const mutation = useMutation(api.conversations.createOrGet);
 
   const mutate = useCallback(
     async (values: RequestType, options?: Options) => {

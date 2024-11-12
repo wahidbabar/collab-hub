@@ -7,6 +7,7 @@ import { Id } from "@/convex_generated/dataModel";
 import UseWorkspaceId from "@/hooks/use-workspace-id";
 import { UseCurrentMember } from "@/features/members/api/use-current-member";
 import { Loader } from "lucide-react";
+import ConversationHero from "./conversation-hero";
 
 export const formatDateLabel = (dateStr: string) => {
   const date = new Date(dateStr);
@@ -131,6 +132,9 @@ const MessageList = ({
       )}
       {variant === "channel" && channelName && channelCreationTime && (
         <ChannelHero name={channelName} creationTime={channelCreationTime} />
+      )}
+      {variant === "conversation" && (
+        <ConversationHero name={memberName} image={memberImage} />
       )}
     </div>
   );
