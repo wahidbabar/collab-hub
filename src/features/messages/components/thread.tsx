@@ -197,6 +197,7 @@ const Thread = ({ messageId, onClose }: ThreadProps) => {
                   updatedAt={message.updatedAt}
                   createdAt={message._creationTime}
                   threadCount={message.threadCount}
+                  threadName={message.threadName}
                   threadImage={message.threadImage}
                   threadTimestamp={message.threadTimestamp}
                   isEditing={editingId === message._id}

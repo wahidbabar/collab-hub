@@ -17,6 +17,7 @@ const populateThread = async (ctx: QueryCtx, messageId: Id<"messages">) => {
       count: 0,
       image: undefined,
       timeStamp: 0,
+      name: "",
     };
   }
 
@@ -28,6 +29,7 @@ const populateThread = async (ctx: QueryCtx, messageId: Id<"messages">) => {
       count: messages.length,
       image: undefined,
       timeStamp: 0,
+      name: "",
     };
   }
 
@@ -37,6 +39,7 @@ const populateThread = async (ctx: QueryCtx, messageId: Id<"messages">) => {
     count: messages.length,
     image: lastMessageUser?.image,
     timeStamp: lastMessage._creationTime,
+    name: lastMessageUser?.name,
   };
 };
 
@@ -197,7 +200,7 @@ export const update = mutation({
       updatedAt: Date.now(),
     });
 
-    // TODO: add functionality to add image to an updated message
+    // TODO: add functionality to add image to an updated message (optional)
     return args.messageId;
   },
 });
@@ -300,6 +303,7 @@ export const get = query({
               reactions: reactionsWithoutMemberIdProperty,
               threadCount: thread.count,
               threadImage: thread.image,
+              threadName: thread.name,
               threadTimestamp: thread.timeStamp,
             };
           })
