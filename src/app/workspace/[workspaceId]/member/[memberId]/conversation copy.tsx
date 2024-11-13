@@ -1,5 +1,5 @@
 import { Id } from "@/convex_generated/dataModel";
-import UseGetMember from "@/features/members/api/use-get-member";
+import useGetMember from "@/features/members/api/use-get-member";
 import { UseGetMessages } from "@/features/messages/api/use-get-messages";
 import UseMemberId from "@/hooks/use-member-id ";
 import { AlertTriangle, Loader } from "lucide-react";
@@ -12,7 +12,7 @@ interface ConversationProps {
 const Conversation = ({ conversationId }: ConversationProps) => {
   const memberId = UseMemberId();
 
-  const { data: member, isLoading: memberLoading } = UseGetMember({ memberId });
+  const { data: member, isLoading: memberLoading } = useGetMember({ memberId });
   const { results, status, loadMore } = UseGetMessages({ conversationId });
 
   if (memberLoading || status === "LoadingFirstPage") {

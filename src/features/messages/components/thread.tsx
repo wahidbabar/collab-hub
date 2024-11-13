@@ -4,8 +4,8 @@ import { AlertTriangle, Loader, XIcon } from "lucide-react";
 import React, { useRef, useState } from "react";
 import UseGetMessage from "../api/use-get-message";
 import Message from "@/components/message";
-import { UseCurrentMember } from "@/features/members/api/use-current-member";
-import UseWorkspaceId from "@/hooks/use-workspace-id";
+import { useCurrentMember } from "@/features/members/api/use-current-member";
+import useWorkspaceId from "@/hooks/use-workspace-id";
 import dynamic from "next/dynamic";
 import { UseCreateMessage } from "../api/use-create-message";
 import { UseGenerateUploadUrl } from "@/features/upload/api/use-generate-upload-url";
@@ -39,13 +39,13 @@ const Thread = ({ messageId, onClose }: ThreadProps) => {
   const [isPending, setIsPending] = useState(false);
 
   const channelId = UseChannelId();
-  const workspaceId = UseWorkspaceId();
+  const workspaceId = useWorkspaceId();
 
   const { results, status, loadMore } = UseGetMessages({
     channelId,
     parentMessageId: messageId,
   });
-  const { data: currentMember } = UseCurrentMember({ workspaceId });
+  const { data: currentMember } = useCurrentMember({ workspaceId });
   const { data: message, isLoading: messageLoading } = UseGetMessage({
     messageId,
   });

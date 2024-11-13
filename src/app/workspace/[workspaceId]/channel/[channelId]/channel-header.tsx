@@ -11,10 +11,10 @@ import {
 import { Input } from "@/components/ui/input";
 import { useDeleteChannel } from "@/features/channels/api/use-delete-channel";
 import { UseUpdateChannel } from "@/features/channels/api/use-update-channel";
-import { UseCurrentMember } from "@/features/members/api/use-current-member";
+import { useCurrentMember } from "@/features/members/api/use-current-member";
 import UseChannelId from "@/hooks/use-channel-id";
-import UseConfirm from "@/hooks/use-confirm";
-import UseWorkspaceId from "@/hooks/use-workspace-id";
+import useConfirm from "@/hooks/use-confirm";
+import useWorkspaceId from "@/hooks/use-workspace-id";
 import { TrashIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
@@ -28,15 +28,15 @@ interface ChannelHeaderProps {
 const ChannelHeader = ({ channelName }: ChannelHeaderProps) => {
   const router = useRouter();
   const channelId = UseChannelId();
-  const workspaceId = UseWorkspaceId();
+  const workspaceId = useWorkspaceId();
   const [value, setValue] = useState(channelName);
   const [editOpen, setEditOpen] = useState(false);
-  const [ConfirmDeleteDialog, confirmDelete] = UseConfirm(
+  const [ConfirmDeleteDialog, confirmDelete] = useConfirm(
     "Are you sure?",
     "This action is irreversible"
   );
 
-  const { data: member } = UseCurrentMember({
+  const { data: member } = useCurrentMember({
     workspaceId,
   });
   const { mutate: updateChannel, isPending: updatingChannel } =

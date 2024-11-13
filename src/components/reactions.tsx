@@ -1,6 +1,6 @@
 import { Doc, Id } from "@/convex_generated/dataModel";
-import { UseCurrentMember } from "@/features/members/api/use-current-member";
-import UseWorkspaceId from "@/hooks/use-workspace-id";
+import { useCurrentMember } from "@/features/members/api/use-current-member";
+import useWorkspaceId from "@/hooks/use-workspace-id";
 import { cn } from "@/lib/utils";
 import React from "react";
 import Hint from "./hint";
@@ -18,9 +18,9 @@ interface ReactionsProps {
 }
 
 const Reactions = ({ reactions, onChange }: ReactionsProps) => {
-  const workspaceId = UseWorkspaceId();
+  const workspaceId = useWorkspaceId();
 
-  const { data: currentMember } = UseCurrentMember({ workspaceId });
+  const { data: currentMember } = useCurrentMember({ workspaceId });
 
   const currentMemberId = currentMember?._id;
 

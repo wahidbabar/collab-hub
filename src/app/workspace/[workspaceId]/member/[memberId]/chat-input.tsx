@@ -1,7 +1,7 @@
 import { Id } from "@/convex_generated/dataModel";
 import { UseCreateMessage } from "@/features/messages/api/use-create-message";
 import { UseGenerateUploadUrl } from "@/features/upload/api/use-generate-upload-url";
-import UseWorkspaceId from "@/hooks/use-workspace-id";
+import useWorkspaceId from "@/hooks/use-workspace-id";
 import dynamic from "next/dynamic";
 import Quill from "quill";
 import { useRef, useState } from "react";
@@ -27,7 +27,7 @@ const ChatInput = ({ placeholder, conversationId }: ChatInputProps) => {
 
   const editorRef = useRef<Quill | null>(null);
 
-  const workspaceId = UseWorkspaceId();
+  const workspaceId = useWorkspaceId();
 
   const { mutate: generateUploadUrl } = UseGenerateUploadUrl();
   const { mutate: createMessage } = UseCreateMessage();

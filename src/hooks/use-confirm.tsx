@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/dialog";
 import React, { useState } from "react";
 
-const UseConfirm = (
+const useConfirm = (
   title: string,
   message: string
 ): [() => JSX.Element, () => Promise<unknown>] => {
@@ -55,4 +55,4 @@ const UseConfirm = (
   return [ConfirmDialog, confirm];
 };
 
-export default UseConfirm;
+export default useConfirm;

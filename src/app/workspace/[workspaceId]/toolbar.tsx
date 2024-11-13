@@ -1,11 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { UseGetWorkspace } from "@/features/workspaces/api/use-get-workspace";
-import UseWorkspaceId from "@/hooks/use-workspace-id";
+import useWorkspaceId from "@/hooks/use-workspace-id";
 import { Info, Loader, Search } from "lucide-react";
 import React, { useEffect } from "react";
 
 const Toolbar = () => {
-  const workspaceId = UseWorkspaceId();
+  const workspaceId = useWorkspaceId();
   const { data: workspace, isLoading: workspaceLoading } = UseGetWorkspace({
     id: workspaceId,
   });

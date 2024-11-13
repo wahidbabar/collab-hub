@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import UseMemberId from "@/hooks/use-member-id ";
-import UseWorkspaceId from "@/hooks/use-workspace-id";
+import useWorkspaceId from "@/hooks/use-workspace-id";
 import { UseCreateOrGetConversations } from "@/features/conversations/api/use-create-or-get-conversations";
 import { AlertTriangle, Loader } from "lucide-react";
 import { Id } from "@/convex_generated/dataModel";
@@ -10,7 +10,7 @@ import { toast } from "sonner";
 import Conversation from "./conversation";
 
 const MemberIdPage = () => {
-  const workspaceId = UseWorkspaceId();
+  const workspaceId = useWorkspaceId();
   const memberId = UseMemberId();
 
   const [conversationId, setConversationId] =

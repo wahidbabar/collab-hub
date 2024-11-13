@@ -1,7 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Id } from "@/convex_generated/dataModel";
-import UseWorkspaceId from "@/hooks/use-workspace-id";
+import useWorkspaceId from "@/hooks/use-workspace-id";
 import { cn } from "@/lib/utils";
 import { cva, type VariantProps } from "class-variance-authority";
 import Link from "next/link";
@@ -30,7 +30,7 @@ interface UserItemProps {
 }
 
 const UserItem = ({ id, label = "Member", image, variant }: UserItemProps) => {
-  const workspaceId = UseWorkspaceId();
+  const workspaceId = useWorkspaceId();
   const avatarFallback = label.charAt(0).toLowerCase();
 
   return (

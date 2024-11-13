@@ -10,7 +10,7 @@ import { UseUpdateMessage } from "@/features/messages/api/use-update-message";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { UseDeleteMessage } from "@/features/messages/api/use-delete-message";
-import UseConfirm from "@/hooks/use-confirm";
+import useConfirm from "@/hooks/use-confirm";
 import { UseToggleReaction } from "@/features/reactions/api/use-toggle-reaction";
 import Reactions from "./reactions";
 import { usePanel } from "@/hooks/use-panel";
@@ -71,7 +71,7 @@ const Message = ({
 }: MessageProps) => {
   const { parentMessageId, onOpenMessage, onOpenProfile, onClose } = usePanel();
 
-  const [ConfirmDialog, confirm] = UseConfirm(
+  const [ConfirmDialog, confirm] = useConfirm(
     "Delete message",
     "Are you sure you want to delete this message? This cannot be undone."
   );

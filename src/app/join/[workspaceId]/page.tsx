@@ -1,25 +1,24 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { UseGetWorkspace } from "@/features/workspaces/api/use-get-workspace";
-import { UseGetWorkspaceInfo } from "@/features/workspaces/api/use-get-workspace-info";
+import { useGetWorkspaceInfo } from "@/features/workspaces/api/use-get-workspace-info";
 import { UseJoin } from "@/features/workspaces/api/use-join";
-import UseWorkspaceId from "@/hooks/use-workspace-id";
+import useWorkspaceId from "@/hooks/use-workspace-id";
 import { cn } from "@/lib/utils";
 import { Loader } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo } from "react";
 import VerificationInput from "react-verification-input";
 import { toast } from "sonner";
 
 const JoinPage = () => {
-  const workspaceId = UseWorkspaceId();
+  const workspaceId = useWorkspaceId();
   const router = useRouter();
 
   const { mutate, isPending } = UseJoin();
-  const { data, isLoading } = UseGetWorkspaceInfo({ id: workspaceId });
+  const { data, isLoading } = useGetWorkspaceInfo({ id: workspaceId });
 
   const isMember = useMemo(() => data?.isMember, [data?.isMember]);
 

@@ -11,8 +11,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { useRemoveWorkspace } from "@/features/workspaces/api/use-remove-workspace";
 import { useUpdateWorkspace } from "@/features/workspaces/api/use-update-workspace";
-import UseConfirm from "@/hooks/use-confirm";
-import UseWorkspaceId from "@/hooks/use-workspace-id";
+import useConfirm from "@/hooks/use-confirm";
+import useWorkspaceId from "@/hooks/use-workspace-id";
 import { TrashIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
@@ -30,8 +30,8 @@ export const PreferencesModal = ({
   initialValue,
 }: PreferencesModalProps) => {
   const router = useRouter();
-  const workspaceId = UseWorkspaceId();
-  const [ConfirmDeleteDialog, confirmDelete] = UseConfirm(
+  const workspaceId = useWorkspaceId();
+  const [ConfirmDeleteDialog, confirmDelete] = useConfirm(
     "Are you sure?",
     "This action is irreversible"
   );

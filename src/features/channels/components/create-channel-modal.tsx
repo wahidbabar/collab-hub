@@ -13,12 +13,12 @@ import React, { useState } from "react";
 import { toast } from "sonner";
 import { useCreateChannelModal } from "../store/use-create-channel-modal";
 import { UseCreateChannel } from "../api/use-create-channel";
-import UseWorkspaceId from "@/hooks/use-workspace-id";
+import useWorkspaceId from "@/hooks/use-workspace-id";
 
 const CreateChannelModal = () => {
   const [open, setOpen] = useCreateChannelModal();
   const [name, setName] = useState("");
-  const workspaceId = UseWorkspaceId();
+  const workspaceId = useWorkspaceId();
   const { mutate, isPending } = UseCreateChannel();
   const router = useRouter();
 

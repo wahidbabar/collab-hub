@@ -7,8 +7,8 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { UseResetJoinCode } from "@/features/workspaces/api/use-reset-join-code";
-import UseConfirm from "@/hooks/use-confirm";
-import UseWorkspaceId from "@/hooks/use-workspace-id";
+import useConfirm from "@/hooks/use-confirm";
+import useWorkspaceId from "@/hooks/use-workspace-id";
 import { DialogClose } from "@radix-ui/react-dialog";
 import { CopyIcon, RefreshCcw } from "lucide-react";
 import React from "react";
@@ -27,8 +27,8 @@ const InviteModal = ({
   workspaceName,
   joinCode,
 }: InviteModalProps) => {
-  const workspaceId = UseWorkspaceId();
-  const [ConfirmDialog, confirm] = UseConfirm(
+  const workspaceId = useWorkspaceId();
+  const [ConfirmDialog, confirm] = useConfirm(
     "Are you sure?",
     "This will deactivate the current invite code and generate a new one."
   );

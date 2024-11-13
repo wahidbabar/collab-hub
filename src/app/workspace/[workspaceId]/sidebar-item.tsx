@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import UseWorkspaceId from "@/hooks/use-workspace-id";
+import useWorkspaceId from "@/hooks/use-workspace-id";
 import { cn } from "@/lib/utils";
 import { cva, type VariantProps } from "class-variance-authority";
 import { LucideIcon } from "lucide-react";
@@ -35,7 +35,7 @@ const SidebarItem = ({
   icon: Icon,
   variant,
 }: SidebarItemProps) => {
-  const workspaceId = UseWorkspaceId();
+  const workspaceId = useWorkspaceId();
   return (
     <Button
       asChild
