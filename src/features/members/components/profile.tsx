@@ -19,7 +19,6 @@ import {
   XIcon,
 } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { useCurrentMember } from "../api/use-current-member";
 import { useDeleteMember } from "../api/use-delete-member";
@@ -32,7 +31,6 @@ interface ProfileProps {
 }
 
 const Profile = ({ memberId, onClose }: ProfileProps) => {
-  const router = useRouter();
   const workspaceId = UseWorkspaceId();
 
   const [LeaveDialog, confirmLeave] = useConfirm(
@@ -52,8 +50,8 @@ const Profile = ({ memberId, onClose }: ProfileProps) => {
     useCurrentMember({ workspaceId });
   const { data: member, isLoading: memberLoading } = useGetMember({ memberId });
 
-  const { mutate: updateMember, isPending: updatingMember } = useUpdateMember();
-  const { mutate: deleteMember, isPending: deletingMember } = useDeleteMember();
+  const { mutate: updateMember } = useUpdateMember();
+  const { mutate: deleteMember } = useDeleteMember();
 
   const onRoleChange = async (role: "admin" | "member") => {
     const ok = await confirmUpdate();

@@ -16,7 +16,7 @@ type Options = {
   throwError?: boolean;
 };
 
-export const UseUpdateChannel = () => {
+export const useUpdateChannel = () => {
   const [data, setData] = useState<ResponseType>(null);
   const [error, setError] = useState<Error | null>(null);
   const [status, setStatus] = useState<
@@ -55,5 +55,5 @@ export const UseUpdateChannel = () => {
     [mutation]
   );
 
-  return { mutate, data, isPending, isError, isSuccess, isSettled };
+  return { mutate, data, error, isPending, isError, isSuccess, isSettled };
 };

@@ -54,6 +54,7 @@ const WorkspacePage = () => {
     open,
     setOpen,
     router,
+    workspaceId,
   ]);
 
   if (workspaceLoading || channelsLoading || memberLoading) {

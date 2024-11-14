@@ -26,7 +26,7 @@ export const UseGenerateUploadUrl = () => {
   const mutation = useMutation(api.upload.generateUploadUrl);
 
   const mutate = useCallback(
-    async (_values?: {}, options?: Options) => {
+    async (_values?: object, options?: Options) => {
       try {
         setData(null);
         setError(null);
@@ -48,5 +48,5 @@ export const UseGenerateUploadUrl = () => {
     [mutation]
   );
 
-  return { mutate, data, isPending, isError, isSuccess, isSettled };
+  return { mutate, data, error, isPending, isError, isSuccess, isSettled };
 };

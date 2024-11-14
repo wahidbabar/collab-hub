@@ -16,8 +16,7 @@ import { toast } from "sonner";
 
 const CreateWorkspaceModal = () => {
   const [open, setOpen] = useCreateWorkspaceModal();
-  const { mutate, isPending, isError, isSuccess, isSettled } =
-    UseCreateWorkspace();
+  const { mutate, isPending } = UseCreateWorkspace();
   const [name, setName] = useState("");
   const router = useRouter();
 
@@ -37,13 +36,9 @@ const CreateWorkspaceModal = () => {
           toast.success("Workspace created");
           router.push(`/workspace/${workspaceId}`);
           handleClose();
-          // return;
         },
-        onError(error) {
-          // Show toast error
-        },
-        onSettled() {
-          // Reset form
+        onError() {
+          toast.error("Failed to create workspace");
         },
       }
     );

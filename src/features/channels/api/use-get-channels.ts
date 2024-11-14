@@ -1,7 +1,6 @@
 import { api } from "@/convex_generated/api";
 import { Id } from "@/convex_generated/dataModel";
 import { useQuery } from "convex/react";
-import React from "react";
 
 interface useGetChannelsProps {
   workspaceId: Id<"workspaces">;

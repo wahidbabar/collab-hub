@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { useDeleteChannel } from "@/features/channels/api/use-delete-channel";
-import { UseUpdateChannel } from "@/features/channels/api/use-update-channel";
+import { useUpdateChannel } from "@/features/channels/api/use-update-channel";
 import { useCurrentMember } from "@/features/members/api/use-current-member";
 import UseChannelId from "@/hooks/use-channel-id";
 import useConfirm from "@/hooks/use-confirm";
@@ -40,7 +40,7 @@ const ChannelHeader = ({ channelName }: ChannelHeaderProps) => {
     workspaceId,
   });
   const { mutate: updateChannel, isPending: updatingChannel } =
-    UseUpdateChannel();
+    useUpdateChannel();
   const { mutate: deleteChannel, isPending: deletingChannel } =
     useDeleteChannel();
 

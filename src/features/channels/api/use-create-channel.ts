@@ -50,5 +50,5 @@ export const UseCreateChannel = () => {
     [mutation]
   );
 
-  return { mutate, data, isPending, isError, isSuccess, isSettled };
+  return { mutate, data, error, isPending, isError, isSuccess, isSettled };
 };
