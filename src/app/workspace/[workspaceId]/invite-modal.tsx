@@ -6,7 +6,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { UseResetJoinCode } from "@/features/workspaces/api/use-reset-join-code";
+import { useResetJoinCode } from "@/features/workspaces/api/use-reset-join-code";
 import useConfirm from "@/hooks/use-confirm";
 import useWorkspaceId from "@/hooks/use-workspace-id";
 import { DialogClose } from "@radix-ui/react-dialog";
@@ -33,7 +33,7 @@ const InviteModal = ({
     "This will deactivate the current invite code and generate a new one."
   );
 
-  const { mutate, isPending } = UseResetJoinCode();
+  const { mutate, isPending } = useResetJoinCode();
 
   const handleResetCode = async () => {
     const ok = await confirm();

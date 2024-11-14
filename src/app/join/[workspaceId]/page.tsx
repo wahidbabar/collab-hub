@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { useGetWorkspaceInfo } from "@/features/workspaces/api/use-get-workspace-info";
-import { UseJoin } from "@/features/workspaces/api/use-join";
+import { useJoin } from "@/features/workspaces/api/use-join";
 import useWorkspaceId from "@/hooks/use-workspace-id";
 import { cn } from "@/lib/utils";
 import { Loader } from "lucide-react";
@@ -17,7 +17,7 @@ const JoinPage = () => {
   const workspaceId = useWorkspaceId();
   const router = useRouter();
 
-  const { mutate, isPending } = UseJoin();
+  const { mutate, isPending } = useJoin();
   const { data, isLoading } = useGetWorkspaceInfo({ id: workspaceId });
 
   const isMember = useMemo(() => data?.isMember, [data?.isMember]);
