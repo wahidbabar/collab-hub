@@ -1,6 +1,6 @@
-import UseGetChannels from "@/features/channels/api/use-get-channels";
+import useGetChannels from "@/features/channels/api/use-get-channels";
 import { useCurrentMember } from "@/features/members/api/use-current-member";
-import { UseGetWorkspace } from "@/features/workspaces/api/use-get-workspace";
+import { useGetWorkspace } from "@/features/workspaces/api/use-get-workspace";
 import useWorkspaceId from "@/hooks/use-workspace-id";
 import {
   AlertTriangle,
@@ -28,10 +28,10 @@ const WorkspaceSidebar = () => {
   const { data: member, isLoading: memberLoading } = useCurrentMember({
     workspaceId,
   });
-  const { data: workspace, isLoading: workspaceLoading } = UseGetWorkspace({
+  const { data: workspace, isLoading: workspaceLoading } = useGetWorkspace({
     id: workspaceId,
   });
-  const { data: channels, isLoading: channelsLoading } = UseGetChannels({
+  const { data: channels, isLoading: channelsLoading } = useGetChannels({
     workspaceId,
   });
   const { data: members } = useGetMembers({

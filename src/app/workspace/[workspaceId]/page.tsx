@@ -1,9 +1,9 @@
 "use client";
 
-import UseGetChannels from "@/features/channels/api/use-get-channels";
+import useGetChannels from "@/features/channels/api/use-get-channels";
 import { useCreateChannelModal } from "@/features/channels/store/use-create-channel-modal";
 import { useCurrentMember } from "@/features/members/api/use-current-member";
-import { UseGetWorkspace } from "@/features/workspaces/api/use-get-workspace";
+import { useGetWorkspace } from "@/features/workspaces/api/use-get-workspace";
 import useWorkspaceId from "@/hooks/use-workspace-id";
 import { Loader, TriangleAlert } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -14,10 +14,10 @@ const WorkspacePage = () => {
   const router = useRouter();
   const [open, setOpen] = useCreateChannelModal();
 
-  const { data: workspace, isLoading: workspaceLoading } = UseGetWorkspace({
+  const { data: workspace, isLoading: workspaceLoading } = useGetWorkspace({
     id: workspaceId,
   });
-  const { data: channels, isLoading: channelsLoading } = UseGetChannels({
+  const { data: channels, isLoading: channelsLoading } = useGetChannels({
     workspaceId,
   });
   const { data: member, isLoading: memberLoading } = useCurrentMember({

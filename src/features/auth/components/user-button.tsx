@@ -33,7 +33,7 @@ const UserButton = () => {
   const handleSignOut = () => {
     signOut().then(() => {
       router.replace("/auth");
-      window.location.href = "/";
+      location.reload();
     });
   };
 

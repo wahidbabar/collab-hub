@@ -6,6 +6,7 @@ import { AlertTriangle, Loader } from "lucide-react";
 import Header from "./header";
 import ChatInput from "./chat-input";
 import MessageList from "@/components/message-list";
+import { usePanel } from "@/hooks/use-panel";
 
 interface ConversationProps {
   conversationId: Id<"conversations">;
@@ -13,6 +14,8 @@ interface ConversationProps {
 
 const Conversation = ({ conversationId }: ConversationProps) => {
   const memberId = UseMemberId();
+
+  const { onOpenProfile } = usePanel();
 
   const { data: member, isLoading: memberLoading } = useGetMember({ memberId });
   const { results, status, loadMore } = UseGetMessages({ conversationId });
@@ -39,7 +42,7 @@ const Conversation = ({ conversationId }: ConversationProps) => {
       <Header
         memberName={member.user.name}
         memberImage={member.user.image}
-        onClick={() => {}}
+        onClick={() => onOpenProfile(memberId)}
       />
       <MessageList
         data={results}
